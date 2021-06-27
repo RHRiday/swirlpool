@@ -46,7 +46,7 @@ class Post {
 				$user_to = "none";
 
 			//insert post 
-			$query = mysqli_query($this->con, "INSERT INTO posts VALUES('', '$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0', '$imageName')");
+			$query = mysqli_query($this->con, "INSERT INTO posts(body,added_by,user_to,date_added,user_closed,deleted,likes) VALUES('$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0')");
 			$returned_id = mysqli_insert_id($this->con);
 
 			//Insert notification
@@ -162,7 +162,7 @@ class Post {
 				$body = $row['body'];
 				$added_by = $row['added_by'];
 				$date_time = $row['date_added'];
-				$imagePath = $row['image'];
+				$imagePath = '';
 
 				//Prepare user_to string so it can be included even if not posted to a user
 				if($row['user_to'] == "none") {
